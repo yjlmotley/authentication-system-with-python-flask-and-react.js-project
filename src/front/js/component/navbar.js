@@ -11,6 +11,9 @@ export const Navbar = () => {
 		navigate('/');
 	};
 
+	const isLoggedIn = !!sessionStorage.getItem('token');
+
+	
 	return (
 		<nav className="navbar navbar-light bg-light">
 			<div className="container">
@@ -18,10 +21,14 @@ export const Navbar = () => {
 					<span className="navbar-brand mb-0 h1">Home</span>
 				</Link>
 				<div className="ml-auto">
+				{!isLoggedIn && (
 					<Link to="/log_in">
 						<button className="btn btn-primary">Log In</button>
 					</Link>
+				)}
+				{isLoggedIn && (
 					<button className="btn btn-primary" onClick={handleLogout}>Logout</button>
+				)}
 				</div>
 			</div>
 		</nav>
