@@ -10,8 +10,16 @@ const Sign_up = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
         let email = event.target.emailInput.value;
         let password = event.target.passwordInput.value;
+        let confirmPassword = event.target.confirmPasswordInput.value;
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+
         const response = await actions.signUp(email, password);
         if (response) {
             console.log("sign up successful")
@@ -28,6 +36,7 @@ const Sign_up = () => {
             <form onSubmit={handleSubmit}>
                 <input type="email" name="emailInput" placeholder="example@host.com" required />
                 <input placeholder="type password here" type="password" name="passwordInput" className="passwordInput" required />
+                <input placeholder="confirm password here" type="password" name="confirmPasswordInput" className="passwordInput" required />
                 <br></br>
                 <button className="submitBtn" type="submit">Sign Up</button>
             </form>
