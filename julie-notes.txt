@@ -1,1 +1,21 @@
-* last checked to see if working: 8.8.24 : 5pm EDT
+* last checked to see if working: 9.11.24
+
+For this project:
+
+- (models.py): minimal changes if you'd like
+- routes.py:
+    * pipenv install flask-jwt-extended
+- app.py: make sure lines 20-24 is in the file:
+        app = Flask(__name__)
+        app.url_map.strict_slashes = False
+
+        app.config["JWT_SECRET_KEY"] = "super-secret" 
+        jwt = JWTManager(app)
+
+- flux.js
+
+- layout.js
+- navbar.js
+- signUp.js
+- logIn.js
+- private.js

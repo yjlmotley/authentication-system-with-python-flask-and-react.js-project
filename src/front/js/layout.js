@@ -3,12 +3,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
-import { Home } from "./pages/home";
-import { Single } from "./pages/single";
+import { Home } from "./pages/Home";
 import injectContext from "./store/appContext";
-import Log_in from "./pages/Log_in";
+import LogIn from "./pages/LogIn";
 import Private from "./pages/Private";
-import Sign_up from "./pages/Sign_up";
+import SignUp from "./pages/SignUp";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -28,10 +27,9 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
-                        <Route element={<Single />} path="/single/:theid" />
-                        <Route element={<Log_in />} path="/log_in" />
+                        <Route element={<SignUp />} path="/sign-up" />
+                        <Route element={<LogIn />} path="/log-in" />
                         <Route element={<Private />} path="/private" />
-                        <Route element={<Sign_up />} path="/sign_up" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

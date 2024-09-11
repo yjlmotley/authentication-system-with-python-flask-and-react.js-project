@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "../../styles/index.css";
 
 
-const Log_in = () => {
+const LogIn = () => {
     const { actions } = useContext(Context);
     const navigate = useNavigate()
     const handleSubmit = async (event) => {
@@ -24,20 +24,17 @@ const Log_in = () => {
     };
 
     return (
-        <div>
+        <div className="authDiv">
             <h1>LOG IN</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="d-flex flex-column w-100 align-items-center">
                 <input type="email" placeholder="email@host.com" name="emailInput" required></input>
                 <input type="password" placeholder="type password here" name="passwordInput" className="passwordInput" required></input>
-                <br></br>
-                <button className="submitBtn" type="submit">Log In</button>
-                <Link to="/sign_up">
-                    <p>Click here to Sign Up</p>
-                </Link>
+                <button className="btn btn-primary mt-3" type="submit">Log In</button>
+                <Link to="/sign-up" className="mt-4">Click here to Sign Up</Link>
             </form>
         </div>
     )
 }
 
 
-export default Log_in;
+export default LogIn;

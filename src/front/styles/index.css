@@ -1,21 +1,20 @@
-h1 {
-    text-align: center;
-}
-p {
-    text-align: center;
+.authDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid black;
+    margin-top: 2.5rem;
+    margin-right: auto;
+    margin-left: auto;
+    width: 60%;
+    padding: 1.5rem;
+    border-radius: 0.25rem;
 }
 
-form {
+.authDiv input {
+    width: 60%;
+    margin-bottom: 5px;
     text-align: center;
-}
-::placeholder {
-    text-align: center;
-}
-.passwordInput {
-    margin-left: 5px;
-}
-.submitBtn {
-    margin-top: 10px;
 }
 
 footer {

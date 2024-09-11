@@ -1,36 +1,22 @@
 const getState = ({ getStore, getActions, setStore }) => {
+	
 	return {
 		store: {
-			
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
 			logIn: async (email, password) => {
 				try {
-					let response = await fetch(process.env.BACKEND_URL + "/api/log_in", {
+					let response = await fetch(process.env.BACKEND_URL + "/api/log-in", {
 						method: "POST",
 						headers: {
-							'Content-Type':' application/json'
+							'Content-Type': ' application/json'
 						},
 						body: JSON.stringify({
 							email: email,
 							password: password
 						})
 					});
-					
+
 					if (response.status === 200) {
 						let data = await response.json();
 						sessionStorage.setItem('token', data.token);
@@ -49,7 +35,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			signUp: async (email, password) => {
 				try {
-					const response = await fetch(process.env.BACKEND_URL + '/api/sign_up', {
+					const response = await fetch(process.env.BACKEND_URL + '/api/sign-up', {
 						method: "Post",
 						headers: {
 							'Content-Type': 'application/json'
@@ -61,32 +47,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					const data = await response.json();
 					console.log(data);
-					return data; 
+					return data;
 				} catch (error) {
 					console.log("There was an error at sign up", error);
-					throw error; 
+					throw error;
 				}
 			},
 
 			goPrivate: async () => {
-				console.log("it's running!")
-				if (sessionStorage.getItem('token')){try {
-					
-					let response = await fetch(process.env.BACKEND_URL + '/api/private', {
-				
-						headers: {
-							Authorization: "Bearer " + sessionStorage.getItem('token')
+				if (sessionStorage.getItem('token')) {
+					try {
+						let response = await fetch(process.env.BACKEND_URL + '/api/private', {
+							headers: {
+								Authorization: "Bearer " + sessionStorage.getItem('token')
+							}
+						})
+						if (!response.ok) {
+							return false
+						} else {
+							let data = await response.json()
+							console.log(data)
+							return true
 						}
-					})
-					if (!response.ok) {
+					} catch (error) {
+						console.log(error)
 						return false
-					} else {
-						let data = await response.json()
-						console.log(data)
-						return true
 					}
-				} catch (error) {console.log(error)
-					return false}}
+				}
 			}
 		}
 	};

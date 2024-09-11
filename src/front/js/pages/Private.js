@@ -26,24 +26,23 @@ const Private = () => {
     switch(isAuthenticated) {
         case "pending": 
             return(
-                <div>
-                    <h1>Authentication in Progress</h1>
-                    <p>Please wait while we check your authentication status.</p>
+                <div className="container text-center mt-5">
+                    <i className="fa-solid fa-spinner fa-spin"></i>
                 </div>
             )
         case "yes": 
             return (
-                <div>
-                    <h1>Private Page</h1>
+                <div className="container text-center mt-5">
+                    <h1>Private Page <i className="fa-solid fa-champagne-glasses"></i></h1>
                     <p>This page is only accessible to successfully logged in users.</p>
                 </div>
             )
         case "no":
             return (
-                <div>
-                    <h1>Access Denied</h1>
+                <div className="container text-center mt-5">
+                    <h1>Access Denied <i className="fa-solid fa-ban"></i></h1>
                     <p>You're not an authenticated user. Please log in successfully to access the private page.</p>
-                    <Link to="/log_in">
+                    <Link to="/log-in">
                         <p>Log In</p>
                     </Link>
                 </div>

@@ -22,7 +22,7 @@ export const Navbar = () => {
 				</Link>
 				<div className="ml-auto">
 				{!isLoggedIn && (
-					<Link to="/log_in">
+					<Link to="/log-in">
 						<button className="btn btn-primary">Log In</button>
 					</Link>
 				)}
