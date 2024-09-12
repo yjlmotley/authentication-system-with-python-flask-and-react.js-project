@@ -2,33 +2,18 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from flask_jwt_extended import create_access_token
 from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
-import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_jwt_extended import jwt_required, JWTManager, get_jwt_identity
+from flask_jwt_extended import create_access_token, JWTManager, jwt_required, get_jwt_identity
+import datetime
 
 api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
 CORS(api)
 
-
-@api.route('/log-in', methods=['POST'])
-def handleLogIn():
-
-    email = request.json.get('email')
-    password = request.json.get('password')
-
-    user = User.query.filter_by(email = email).first()
-    if user is None or not check_password_hash(user.password, password):
-        return jsonify({"msg": "Invalid username or password"}), 401
-    
-    expiration = datetime.timedelta(days = 7)
-    access_token = create_access_token(identity = user.email, expires_delta = expiration)
-    return jsonify({"token": access_token}), 200
 
 @api.route('/sign-up', methods=['POST'])
 def handleSignup():
@@ -46,6 +31,20 @@ def handleSignup():
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"msg": "User created successfully"}), 201
+
+@api.route('/log-in', methods=['POST'])
+def handleLogIn():
+
+    email = request.json.get('email')
+    password = request.json.get('password')
+
+    user = User.query.filter_by(email = email).first()
+    if user is None or not check_password_hash(user.password, password):
+        return jsonify({"msg": "Invalid username or password"}), 401
+    
+    expiration = datetime.timedelta(days = 7)
+    access_token = create_access_token(identity = user.email, expires_delta = expiration)
+    return jsonify({"token": access_token}), 200
 
 @api.route('/private', methods=['GET'])
 @jwt_required()
