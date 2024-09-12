@@ -4,6 +4,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 		},
 		actions: {
+			signUp: async (email, password) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + '/api/sign-up', {
+						method: "Post",
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify({
+							email: email,
+							password: password
+						})
+					});
+					const data = await response.json();
+					console.log(data);
+					return data;
+				} catch (error) {
+					console.log("There was an error at sign up", error);
+					throw error;
+				}
+			},
+			
 			logIn: async (email, password) => {
 				try {
 					let response = await fetch(process.env.BACKEND_URL + "/api/log-in", {
@@ -30,27 +51,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log("There was an error during login:", error);
 					return false;
-				}
-			},
-
-			signUp: async (email, password) => {
-				try {
-					const response = await fetch(process.env.BACKEND_URL + '/api/sign-up', {
-						method: "Post",
-						headers: {
-							'Content-Type': 'application/json'
-						},
-						body: JSON.stringify({
-							email: email,
-							password: password
-						})
-					});
-					const data = await response.json();
-					console.log(data);
-					return data;
-				} catch (error) {
-					console.log("There was an error at sign up", error);
-					throw error;
 				}
 			},
 
