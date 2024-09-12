@@ -21,14 +21,13 @@ export const Navbar = () => {
 					<span className="navbar-brand mb-0 h1">Home</span>
 				</Link>
 				<div className="ml-auto">
-				{!isLoggedIn && (
-					<Link to="/log-in">
-						<button className="btn btn-primary">Log In</button>
-					</Link>
-				)}
-				{isLoggedIn && (
-					<button className="btn btn-primary" onClick={handleLogout}>Logout</button>
-				)}
+					{isLoggedIn ? (
+				    		<button className="btn btn-primary" onClick={handleLogout}>Logout</button>
+				  	) : (
+				    		<Link to="/log-in">
+				      			<button className="btn btn-primary">Log In</button>
+				    		</Link>
+				  	)}
 				</div>
 			</div>
 		</nav>
