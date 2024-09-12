@@ -35,8 +35,8 @@ const SignUp = () => {
             <h1> SIGN UP </h1>
             <form onSubmit={handleSubmit} className="d-flex flex-column w-100 align-items-center">
                 <input type="email" name="emailInput" placeholder="email@host.com" required />
-                <input placeholder="type password" type="password" name="passwordInput" className="passwordInput" required />
-                <input placeholder="confirm password" type="password" name="confirmPasswordInput" className="passwordInput" required />
+                <input placeholder="type password" type="password" name="passwordInput" required />
+                <input placeholder="confirm password" type="password" name="confirmPasswordInput" required />
                 <button className="btn btn-primary mt-3" type="submit">Sign Up</button>
             </form>
         </div>
