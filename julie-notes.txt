@@ -5,7 +5,7 @@ For this project:
 - (models.py): minimal changes if you'd like
 - routes.py:
     * pipenv install flask-jwt-extended
-- app.py: make sure lines 20-24 is in the file:
+- app.py: make sure lines 20-24 is in the file: (import `from flask_jwt_extended import JWTManager` as needed on top)
         app = Flask(__name__)
         app.url_map.strict_slashes = False
 
